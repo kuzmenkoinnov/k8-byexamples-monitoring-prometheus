@@ -44,6 +44,9 @@ Targets:
 
   statemetrics-install Install kube-state-metrics
   statemetrics-delete  Delete kube-state-metrics
+
+  alertmanager-install Install alertmanager
+  alertmanager-delete  Delete alertmanager
 ```
 
 ## Examples

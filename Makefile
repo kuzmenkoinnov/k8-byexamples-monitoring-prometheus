@@ -32,21 +32,21 @@ sizemetrics-delete:     delete-sizemetrics-daemonset
 statemetrics-install:   install-statemetrics-rbac install-statemetrics-deployment install-statemetrics-service
 ## Delete kube-state-metrics
 statemetrics-delete:    delete-statemetrics-rbac delete-statemetrics-deployment delete-statemetrics-service
-####################################
+## Install alertmanager
+alertmanager-install:   install-alertmanager-templates install-alertmanager-configmap install-alertmanager-deployment install-alertmanager-service
+## Delete alertmanager
+alertmanager-delete:    delete-alertmanager-templates delete-alertmanager-configmap delete-alertmanager-deployment delete-alertmanager-service
 
+# LIB
 install-%:
-
 	@envsubst < manifests/$*.yaml | kubectl --namespace $(NS) apply -f -
 
 delete-%:
-
 	@envsubst < manifests/$*.yaml | kubectl --namespace $(NS) delete --ignore-not-found -f -
 
 dump-%:
-
 	envsubst < manifests/$*.yaml
 
-#
 # Help Outputs
 GREEN  		:= $(shell tput -Txterm setaf 2)
 YELLOW 		:= $(shell tput -Txterm setaf 3)
@@ -65,3 +65,4 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 	@echo
+# EOLIB

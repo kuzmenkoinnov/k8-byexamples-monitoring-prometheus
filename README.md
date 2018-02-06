@@ -14,9 +14,37 @@
 # Install Prometheus & stuff into a Kubernetes Cluster
 
 Simply `make install` and open up http://prometheus.infra-monitoring.svc.cluster.local/
+
 Still proxying access to your cluster?! https://github.com/mateothegreat/k8-byexamples-openvpn!
 
 > k8 by example -- straight to the point, simple execution.
+
+## Usage
+
+```sh
+$ make help
+
+Usage:
+
+  make <target>
+
+Targets:
+
+  install              Install all resources
+  delete               Delete all resources
+
+  prometheus-install   Install Prometheus
+  prometheus-delete    Delete Prometheus
+
+  exporter-install     Install Node Exporter
+  exporter-delete      Delete Node Exporter
+
+  sizemetrics-install  Install kube-size-metrics
+  sizemetrics-delete   Delete kube-size-metrics
+
+  statemetrics-install Install kube-state-metrics
+  statemetrics-delete  Delete kube-state-metrics
+```
 
 ## Examples
 

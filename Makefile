@@ -9,9 +9,14 @@
 NS              ?= infra-monitoring
 SERVICE_NAME    ?= prometheus
 SERVICE_PORT    ?= 80
+GCE_ZONE		?= us-central1-a
+GCE_DISK        ?= prometheus-persistent-storage
 export
 
-all:        help
+## Create GCE Disk
+disks-create:
+	gcloud compute disks create --zone=$(GCE_ZONE) --labels="purpose=k8" --type pd-ssd --size 20GB $(GCE_DISK)
+
 ## Install all resources
 install:                prometheus-install exporter-install sizemetrics-install statemetrics-install
 ## Delete all resources
@@ -38,6 +43,8 @@ alertmanager-install:   install-alertmanager-templates install-alertmanager-conf
 alertmanager-delete:    delete-alertmanager-templates delete-alertmanager-configmap delete-alertmanager-deployment delete-alertmanager-service
 
 # LIB
+all: help
+
 install-%:
 	@envsubst < manifests/$*.yaml | kubectl --namespace $(NS) apply -f -
 

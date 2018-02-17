@@ -6,16 +6,10 @@
 # /____                     matthewdavis.io, holla!
 #
 
-NS              ?= infra-monitoring
+NS              ?= default
 SERVICE_NAME    ?= prometheus
 SERVICE_PORT    ?= 80
-GCE_ZONE		?= us-central1-a
-GCE_DISK        ?= prometheus-persistent-storage
 export
-
-## Create GCE Disk
-disks-create:
-	gcloud compute disks create --zone=$(GCE_ZONE) --labels="purpose=k8" --type pd-ssd --size 20GB $(GCE_DISK)
 
 ## Install all resources
 install:                prometheus-install exporter-install sizemetrics-install statemetrics-install

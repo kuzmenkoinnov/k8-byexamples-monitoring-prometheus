@@ -36,6 +36,15 @@ alertmanager-install:   install-alertmanager-templates install-alertmanager-conf
 ## Delete alertmanager
 alertmanager-delete:    delete-alertmanager-templates delete-alertmanager-configmap delete-alertmanager-deployment delete-alertmanager-service
 
+## Test installation
+test:
+
+	@echo "$(GREEN)"
+
+	nslookup prometheus
+
+	@echo "$(RESET)"
+
 # LIB
 all: help
 

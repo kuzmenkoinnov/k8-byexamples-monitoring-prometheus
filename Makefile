@@ -5,6 +5,7 @@
 #  \__, /\____/_/ /_/ /_/\__,_/\__/\___/\____/\__,_/
 # /____                     matthewdavis.io, holla!
 #
+include .make/Makefile.inc
 
 NS              ?= default
 SERVICE_NAME    ?= prometheus
